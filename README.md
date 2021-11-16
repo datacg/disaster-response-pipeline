@@ -1,8 +1,8 @@
 DISASTER RESPONSE PIPELINE
 ==========================
 
-Udacity Data Scientist Nanodegree Program
-Project "Write a Data Science Blog Post"
+Udacity Data Scientist Nanodegree Program<br />
+Project "Write a Data Science Blog Post"<br />
 by Juliano Oliveira | November 15, 2021
 
 1. [Installation](#installation)
