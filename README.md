@@ -3,60 +3,93 @@ DISASTER RESPONSE PIPELINE
 
 Udacity Data Scientist Nanodegree Program
 Project "Write a Data Science Blog Post"
-by Juliano Oliveira | July 12, 2021
-
-### Table of Contents
+by Juliano Oliveira | November 15, 2021
 
 1. [Installation](#installation)
-2. [About this Project](#motivation)
-3. [File Descriptions](#files)
-4. [Results](#results)
-5. [Acknowledgements](#acknowledgements)
+2. [Motivation](#motivation)
+3. [Files](#files)
+4. [Instructions](#instructions)
+5. [Screenshots](#screenshots)
 
 ## Installation <a name="installation"></a>
+This project requires Python 3.x and the following Python libraries:
 
-There is no installation, just this Jupyter Notebook (Python 3.*) file:
+Machine Learning Libraries: NumPy, SciPy, Pandas, Sciki-Learn
+Natural Language Process Libraries: NLTK
+SQLlite Database Libraqries: SQLalchemy
+Web App and Data Visualization: Flask, Plotly
 
-- ["covid-19-death-rate.ipynb"](https://github.com/datacgi/covid-19-death-rate/blob/main/covid-19-death-rate.ipynb)
+## Motivation <a name="motivation"></a>
+In this project, It will provide disaster responses to analyze data from Figure Eight to build a model for an API that classifies disaster messages.
 
-## About this Project<a name="motivation"></a>
+This project will include a web app where an emergency worker can input a new message and get classification results in several categories. The web app will also display visualizations of the data.
 
-This project originated from the Udacity's Nanodregree Data Science Program, to attend the activity "Write a Data Science Blog Post".
+Below are a few screenshots of the web app.
 
-The Coronavirus Disease (COVID-19) pandemic took the world by surprise and, despite the advances we have made in dealing with the virus, we still have a lot to learn. However, since last year, the world has produced countless data that can help us understand what is happening and why.
+Required libraries
+nltk 3.6.2
+sklearn 0.0
+joblib 1.0.1
+pandas 1.2.4
+sqlalchemy 1.4.9
+plotly 4.14.3
+flask 1.1.2
 
-This study aims to apply Data Science techniques to understand the different mortality rates caused by COVID-19 at a global level, based on the five aspects that affect its lethality: economy, corruption, education, health, and government regime.
+## Files <a name="files"></a>
+Files:
+- app
+| - template
+| |- master.html  # main page of web app
+| |- go.html  # classification result page of web app
+|- run.py  # Flask file that runs app
 
-The proposal is to explain the following issues:
+- data
+|- disaster_categories.csv  # data to process
+|- disaster_messages.csv  # data to process
+|- process_data.py 
+|- DisasterResponse.db   # database to save clean data to
 
-1. <b>Economic</b>: Do richer countries perform better against the virus than emerging ones?
-2. <b>Corruption</b>: Do the most corrupt countries have more deaths?
-3. <b>Health</b>: Are countries with the most investments in health coping better with the pandemic?
-4. <b>Education</b>: Does the quality of education interfere with the death rate?
-5. <b>Government</b>: Is democracy more prepared to save lives than authoritarian regimes?
+- models
+|- train_classifier.py
+|- disaster_model.pkl  # saved model
 
-## File Descriptions <a name="files"></a>
+- assets
+|- message_length.png
+|- distribution_of_categories.png
+|- overview.png
 
-Datasets available in this repository:
+- README.md
+the main logic of BI work is in process_data.py and train_classifier.py and here is a list of workflow:
 
-- ["covid.csv" (Coronavirus (COVID-19) Deaths (Our World in Data)](https://ourworldindata.org/covid-deaths/)
-- ["gdp.csv" (Gross domestic product — GDP (The World Bank)](https://data.worldbank.org/indicator/NY.GDP.MKTP.CD)
-- ["cpi.csv" (Corruption Perception Index 2020 (Transparency International)](https://www.transparency.org/en/cpi/2020/index/bra)
-- ["edu.csv" (Education Index (Human Development Reports)](http://hdr.undp.org/en/indicators/103706)
-- ["health.csv" (The 2021 STC Health Index (Hudson's Global Residence Index)](https://globalresidenceindex.com/hnwi-index/health-index/)
-- ["demo.csv" (Democracy Index 2020 (The Economist Intelligence Unit)](https://www.eiu.com/n/campaigns/democracy-index-2020/)
+process_data.py: Doing cleaning pipeline job:
+Loads the messages and categories from csv
+Combine the two datasets into pd.dataframe
+Cleans the data
+Stores the data in a SQLite db
+train_classifier.py: A machine learning pipeline:
+Loads data from the SQLite database
+Splits the dataset into training and test sets
+Builds a text processing and machine learning ETL pipeline
+Trains and tunes a model by using GridSearchCV
+Outputs results on the test set for evaluating the model
+Exports the final model as a pickle file
 
-The notebook file is more technical. I answered the questions following the CRISP-DM Process (1. Understanding Business, 2. Understanding Data, 3. Preparing Data, 4. Modeling Data, 5. Evaluate the Results, and 6. Implement). You can find all analyzes of the data and the conclusion in the post (link below).  
+## Instructions <a name="Instrucions"></a>
+Run the following commands in the project's root directory to set up your database and model.
 
-## Results<a name="results"></a>
+To run ETL pipeline that cleans data and stores in database python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db
+To run ML pipeline that trains classifier and saves python models/train_classifier.py data/DisasterResponse.db models/disaster_model.pkl
+Run the following command in the app's directory to run your web app. python run.py
 
-By crossing and grouping the data from these five aspects of the countries (economy, education, health, corruption, and democracy), it was possible to analyze the correlations between them and, thus, understand the different mortality rates of COVID-19 in the world.
+Go to http://0.0.0.0:3001/
 
-All the explanation and findings are available in my Medium account [https://datacgi.medium.com](https://datacgi.medium.com), at the folowing post:
-[https://datacgi.medium.com/five-aspects-affecting-covid-19-death-rate-9f5758a62ef1)](https://datacgi.medium.com/five-aspects-affecting-covid-19-death-rate-9f5758a62ef1).
+disaster response project web app overview
 
-## Acknowledgements<a name="acknowledgements"></a>
+distribution of message length
 
-I developed this study for the “Write a Data Science Blog Post,” my first project for Udacity’s Nanodegree Data Science Program. Thank Udacity for encouraging and guiding me to develop this work, my wife and daughter for giving me the support I need to study full time, and my programming teacher and friend Rodrigo Veloso for sharing his knowledge with me.
+distribution of categories
+
+## Screenshots<a name="screenshots"></a>
+
 
 Juliano Oliveira
